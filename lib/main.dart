@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,12 +19,15 @@ class MyApp extends StatelessWidget {
 }
 
 class Calculator extends StatefulWidget {
+  const Calculator({super.key});
+
   @override
   _CalculatorState createState() => _CalculatorState();
 }
 
 class _CalculatorState extends State<Calculator> {
   String input = "";
+  String result = "0";
 
   @override
   Widget build(BuildContext context) {
@@ -36,59 +40,75 @@ class _CalculatorState extends State<Calculator> {
       
       body: Column(
         children: [
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              createButton("C", const Color.fromARGB(255, 221, 152, 152)),
-              createButton("/", Colors.white10),
-              createButton("*", Colors.white10),
-              createButton("-", Colors.white10)
-            ],
-          ),
-          // for space between rows 
-          SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              createButton("7", Colors.white24),
-              createButton("8", Colors.white24),
-              createButton("9", Colors.white24),
-              createButton("+", Colors.white10)
-            ],
-          ),
-          SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              createButton("4", Colors.white24),
-              createButton("5", Colors.white24),
-              createButton("6", Colors.white24),
-              createButton("=", Colors.white10)
-            ],
-          ),
-          SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              createButton("1", Colors.white24),
-              createButton("2", Colors.white24),
-              createButton("3", Colors.white24),
-              SizedBox(width: 100.0,),
-            ],
-          ),
-          SizedBox(height: 15),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(width: 100.0,),
-              createButton("0", Colors.white24),
-              SizedBox(width: 100.0,),
-              SizedBox(width: 100.0,)
-            ],
-          )
+          CalculatorButtons(),
         ],
       ),
+    );
+  }
+}
+
+
+class CalculatorButtons extends StatelessWidget {
+  const CalculatorButtons({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            createButton("C", const Color.fromARGB(255, 221, 152, 152)),
+            createButton("/", Colors.white10),
+            createButton("*", Colors.white10),
+            createButton("-", Colors.white10)
+          ],
+        ),
+        // for space between rows 
+        SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            createButton("7", Colors.white24),
+            createButton("8", Colors.white24),
+            createButton("9", Colors.white24),
+            createButton("+", Colors.white10)
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            createButton("4", Colors.white24),
+            createButton("5", Colors.white24),
+            createButton("6", Colors.white24),
+            createButton("=", Colors.white10)
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            createButton("1", Colors.white24),
+            createButton("2", Colors.white24),
+            createButton("3", Colors.white24),
+            SizedBox(width: 100.0,),
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(width: 100.0,),
+            createButton("0", Colors.white24),
+            SizedBox(width: 100.0,),
+            SizedBox(width: 100.0,)
+          ],
+        )
+      ],
     );
   }
 }
@@ -105,9 +125,13 @@ Widget createButton(String buttonText, Color colour) {
           ),
           ),
         onPressed: () {
+          if (buttonText == "C") {
+            
+          }
           print(buttonText);
         }, 
         child: Text(buttonText, style: TextStyle(fontSize: 40, color: Colors.white),)
       ),
   );
-}
+} 
+
