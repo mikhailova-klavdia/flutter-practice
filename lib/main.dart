@@ -68,8 +68,9 @@ class _CalculatorState extends State<Calculator> {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(20),
-            alignment: Alignment.bottomRight,
+            alignment: Alignment.centerRight,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(input, style: const TextStyle(fontSize: 35, color: Colors.black54),),
                 Text(result, style: const TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
