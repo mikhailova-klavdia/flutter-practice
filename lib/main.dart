@@ -10,16 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hello World',
+      title: 'Calculator',
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Column(
-          children: [
-            Text("Calculator", style: TextStyle(fontSize: 42)),
-            Calculator(),
-          ],
-        ),
-      ),
+      home: Calculator()
     );
   }
 }
@@ -34,11 +27,23 @@ class _CalculatorState extends State<Calculator> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("placeholder"),
-      ],
+    return Scaffold(
+      body: Column(
+        children: [
+          Text("Placeholder"),
+          createButton("1", Colors.yellow)
+        ],
+      ),
     );
   }
+}
 
+Widget createButton(String buttonText, Color colour) {
+  return ElevatedButton(
+      style: ElevatedButton.styleFrom(backgroundColor: colour),
+      onPressed: () {
+        print(buttonText);
+      }, 
+      child: Text(buttonText)
+    );
 }
