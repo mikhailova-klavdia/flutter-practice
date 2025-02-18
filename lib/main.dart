@@ -31,7 +31,47 @@ class _CalculatorState extends State<Calculator> {
       body: Column(
         children: [
           Text("Placeholder"),
-          createButton("1", Colors.yellow)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              createButton("C", const Color.fromARGB(255, 221, 152, 152)),
+              createButton("/", Colors.white10),
+              createButton("*", Colors.white10)
+            ],
+          ),
+          // for space between rows 
+          SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              createButton("7", Colors.white24),
+              createButton("8", Colors.white24),
+              createButton("9", Colors.white24),
+              createButton("-", Colors.white10)
+            ],
+          ),
+          SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              createButton("4", Colors.white24),
+              createButton("5", Colors.white24),
+              createButton("6", Colors.white24),
+              createButton("+", Colors.white10)
+            ],
+          ),
+          SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              createButton("1", Colors.white24),
+              createButton("2", Colors.white24),
+              createButton("3", Colors.white24),
+              createButton("=", Colors.white10)
+            ],
+          ),
+          SizedBox(height: 15),
+          createButton("0", Colors.white24)
         ],
       ),
     );
@@ -39,11 +79,20 @@ class _CalculatorState extends State<Calculator> {
 }
 
 Widget createButton(String buttonText, Color colour) {
-  return ElevatedButton(
-      style: ElevatedButton.styleFrom(backgroundColor: colour),
-      onPressed: () {
-        print(buttonText);
-      }, 
-      child: Text(buttonText)
-    );
+  return SizedBox(
+    width: 100.0,
+    height: 100.0,
+    child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colour,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          ),
+        onPressed: () {
+          print(buttonText);
+        }, 
+        child: Text(buttonText, style: TextStyle(fontSize: 40, color: Colors.white),)
+      ),
+  );
 }
