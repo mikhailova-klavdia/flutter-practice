@@ -28,9 +28,15 @@ class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Calculator"),
+        backgroundColor: Colors.black38,
+        centerTitle: true,
+      ),
+      
       body: Column(
         children: [
-          Text("Placeholder"),
+          SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
