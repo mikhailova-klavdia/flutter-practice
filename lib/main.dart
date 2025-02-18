@@ -10,18 +10,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hello World ',
-      debugShowCheckedModeBanner: true,
+      title: 'Hello World',
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        //appBar: AppBar(title: const Text('Hello World!!!')),
-        body: const Center(
-          child: Text(
-            'Hello, World!',
-            style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: Colors.black),
-          )
-        )
-      )
+        body: Column(
+          children: [
+            Text("Calculator", style: TextStyle(fontSize: 42)),
+            Calculator(),
+          ],
+        ),
+      ),
     );
   }
 }
 
+class Calculator extends StatefulWidget {
+  @override
+  _CalculatorState createState() => _CalculatorState();
+}
+
+class _CalculatorState extends State<Calculator> {
+  String input = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text("placeholder"),
+      ],
+    );
+  }
+
+}
