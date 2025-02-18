@@ -29,6 +29,31 @@ class _CalculatorState extends State<Calculator> {
   String input = "";
   String result = "0";
 
+  void onButtonClick(String value) {
+    setState(() {
+      if (value == "C") {
+        input = "";
+        result = "0";
+      } else if (value == "=") {
+        result = evaluateExpression(input);
+      } else {
+        input += value;
+      }
+    });
+  }
+
+  String evaluateExpression(String expression) {
+    try {
+      ShuntingYardParser p = ShuntingYardParser();
+      Expression exp = p.parse(expression);
+      ContextModel cm = ContextModel();
+      double eval = exp.evaluate(EvaluationType.REAL, cm);
+      return eval.toString();
+    } catch (e) {
+      return "Error";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,18 +65,16 @@ class _CalculatorState extends State<Calculator> {
       
       body: Column(
         children: [
-          CalculatorButtons(),
+          CalculatorButtons(onButtonClick: onButtonClick),
         ],
       ),
     );
   }
 }
 
-
 class CalculatorButtons extends StatelessWidget {
-  const CalculatorButtons({
-    super.key,
-  });
+  final Function(String) onButtonClick;
+  const CalculatorButtons({super.key, required this.onButtonClick});
 
   @override
   Widget build(BuildContext context) {
@@ -111,27 +134,23 @@ class CalculatorButtons extends StatelessWidget {
       ],
     );
   }
+
+
+  Widget createButton(String buttonText, Color colour) {
+    return SizedBox(
+      width: 100.0,
+      height: 100.0,
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: colour,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            ),
+          onPressed: () => onButtonClick(buttonText),
+          child: Text(buttonText, style: TextStyle(fontSize: 40, color: Colors.white),)
+        ),
+    );
+  } 
+
 }
-
-Widget createButton(String buttonText, Color colour) {
-  return SizedBox(
-    width: 100.0,
-    height: 100.0,
-    child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: colour,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          ),
-        onPressed: () {
-          if (buttonText == "C") {
-            
-          }
-          print(buttonText);
-        }, 
-        child: Text(buttonText, style: TextStyle(fontSize: 40, color: Colors.white),)
-      ),
-  );
-} 
-
