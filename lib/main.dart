@@ -65,6 +65,17 @@ class _CalculatorState extends State<Calculator> {
       
       body: Column(
         children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(20),
+            alignment: Alignment.bottomRight,
+            child: Column(
+              children: [
+                Text(input, style: const TextStyle(fontSize: 35, color: Colors.black54),),
+                Text(result, style: const TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
+              ],
+            )
+          ),
           CalculatorButtons(onButtonClick: onButtonClick),
         ],
       ),
