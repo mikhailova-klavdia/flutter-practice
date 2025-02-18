@@ -36,7 +36,8 @@ class _CalculatorState extends State<Calculator> {
             children: [
               createButton("C", const Color.fromARGB(255, 221, 152, 152)),
               createButton("/", Colors.white10),
-              createButton("*", Colors.white10)
+              createButton("*", Colors.white10),
+              createButton("-", Colors.white10)
             ],
           ),
           // for space between rows 
@@ -47,7 +48,7 @@ class _CalculatorState extends State<Calculator> {
               createButton("7", Colors.white24),
               createButton("8", Colors.white24),
               createButton("9", Colors.white24),
-              createButton("-", Colors.white10)
+              createButton("+", Colors.white10)
             ],
           ),
           SizedBox(height: 15),
@@ -57,7 +58,7 @@ class _CalculatorState extends State<Calculator> {
               createButton("4", Colors.white24),
               createButton("5", Colors.white24),
               createButton("6", Colors.white24),
-              createButton("+", Colors.white10)
+              createButton("=", Colors.white10)
             ],
           ),
           SizedBox(height: 15),
@@ -67,11 +68,19 @@ class _CalculatorState extends State<Calculator> {
               createButton("1", Colors.white24),
               createButton("2", Colors.white24),
               createButton("3", Colors.white24),
-              createButton("=", Colors.white10)
+              SizedBox(width: 100.0,),
             ],
           ),
           SizedBox(height: 15),
-          createButton("0", Colors.white24)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(width: 100.0,),
+              createButton("0", Colors.white24),
+              SizedBox(width: 100.0,),
+              SizedBox(width: 100.0,)
+            ],
+          )
         ],
       ),
     );
